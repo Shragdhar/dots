@@ -1,0 +1,7 @@
+# BEGIN_KITTY_THEME
+# Gruvbox Dark
+include current-theme.conf
+
+font_size 16.0
+background_opacity 0.97
+# END_KITTY_THEME
