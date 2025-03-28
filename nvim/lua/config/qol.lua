@@ -10,3 +10,33 @@ function ToggleTheme()
 end
 
 map("n", ".", ToggleTheme, { noremap = true, silent = true, desc = "Toggle Theme" })
+
+vim.cmd [[
+  highlight WhichKey guibg=NONE
+  highlight WhichKeyFloat guibg=NONE
+  highlight WhichKeyBorder guibg=NONE
+  highlight WhichKeySeparator guibg=NONE
+  highlight Special guibg=NONE
+  highlight SnacksDashboardDesc guibg=NONE
+]]
+
+-- local Util = require("lazyvim.util")
+--
+-- Override LazyVim's root detection function to include CMakeLists.txt
+-- function Util.root.get(path, patterns)
+--     patterns = patterns or { ".git", "CMakeLists.txt", "Makefile", "build" } -- Add CMake files
+--     return require("lazyvim.util.root").find(path or vim.fn.getcwd(), patterns)
+-- end
+
+vim.api.nvim_create_user_command("Search", function (opts)
+
+    local args = vim.split(opts.args, " ")
+
+    if #args < 2 then return end
+
+    local search = vim.fn.escape(args[1], '\\/')
+    local replace = args[2]
+
+    vim.cmd('%s/\\<'..search..'\\>/'..replace..'/g')
+
+end, {nargs="*"})

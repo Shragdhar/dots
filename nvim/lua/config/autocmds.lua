@@ -16,3 +16,19 @@ vim.api.nvim_create_autocmd("BufEnter", {
         end
     end,
 })
+
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--     callback = function()
+--         local Util = require("lazyvim.util")
+--         local patterns = { ".git", "CMakeLists.txt", "Makefile", "build" } -- Add CMake files
+--         local new_root = Util.root.get(vim.fn.expand("%:p"), patterns) -- Pass current file
+--
+--         if new_root and vim.fn.getcwd() ~= new_root then
+--             vim.cmd("cd " .. vim.fn.fnameescape(new_root))
+--             vim.notify("Changed directory to: " .. new_root, vim.log.levels.INFO)
+--         else
+--             vim.notify("No project root detected for: " .. vim.fn.expand("%:p"), vim.log.levels.WARN)
+--         end
+--     end,
+-- })
+--

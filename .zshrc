@@ -114,6 +114,7 @@ alias "tree3"="tree -L 3"
 alias "c."="code ."
 alias btop="btop --utf-force"
 alias mcaselector="sh ~/Games/Minecraft/MCA\ Selector/mcaselector.sh"
+alias rgl="rg --color=always --line-number"
 
 mcd ()
 {
@@ -158,6 +159,33 @@ sd() {
     fi
 }
 
+#searches for a term and lets you select the exact match and open the file and take you to the exact match
+rgs() {
+    if [ -z "$1" ]; then
+        echo "Usage: rgs <search_term>"
+        return 1
+    fi
+
+    local search_term="$1"
+    local selected_match
+
+    # Search for the term with rg; each line is output as: file:line:...
+    selected_match=$(rg --line-number --color=always "$search_term" | \
+        fzf --ansi --delimiter : \
+            --preview "rg --color=always -C10 --line-number '$search_term' {1}" \
+            --preview-window=up:20:wrap)
+
+    if [ -n "$selected_match" ]; then
+        local file
+        local line
+        file=$(echo "$selected_match" | cut -d: -f1)
+        line=$(echo "$selected_match" | cut -d: -f2)
+
+        # Open the file in Neovim at the matched line.
+        nvim +"$line" "$file"
+    fi
+}
+
 . /opt/z.sh
 source /home/q/.config/broot/launcher/bash/br
 
@@ -165,4 +193,3 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 export PATH="/usr/sbin:/sbin:$PATH"
 
 #export LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libbrotlidec.so /usr/lib/x86_64-linux-gnu/libexpat.so"
-
