@@ -103,18 +103,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh
-alias ll="ls -lhN"
-alias lla="ls -lhaN"
-alias rr='ranger'
-alias ns='nemo . > /dev/null 2>&1 &'
-alias lgit="lazygit"
-alias "tree1"="tree -L 1"
-alias "tree2"="tree -L 2"
-alias "tree3"="tree -L 3"
-alias "c."="code ."
-alias btop="btop --utf-force"
-alias mcaselector="sh ~/Games/Minecraft/MCA\ Selector/mcaselector.sh"
-alias rgl="rg --color=always --line-number"
+source_if_exists() {
+    [ -r "$1" ] && source "$1"
+}
+
+source_if_exists ~/.dotfiles/zsh/aliases.zsh
 
 mcd ()
 {
