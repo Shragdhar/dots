@@ -9,7 +9,7 @@ function ToggleTheme()
     vim.notify("Switched to " .. themes[current_theme], vim.log.levels.INFO)
 end
 
-map("n", ".", ToggleTheme, { noremap = true, silent = true, desc = "Toggle Theme" })
+vim.keymap.set("n", ".", ToggleTheme, { noremap = true, silent = true, desc = "Toggle Theme" })
 
 vim.cmd [[
   highlight WhichKey guibg=NONE
