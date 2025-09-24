@@ -2,10 +2,10 @@
 alias ll="ls -lhN"
 alias lla="ls -lhaN"
 alias rgl="rg --color=always --line-number"
-alias sni="sudo nala install"
-alias snr="sudo nala remove"
 alias dush="du -sh *"
 alias cls="clear"
+alias nrs="sudo nixos-rebuild switch"
+alias hms="home-manager switch"
 
 # cd
 alias dev="cd ~/Development/"
@@ -19,14 +19,15 @@ alias "tree3"="tree -L 3"
 alias "c."="code ."
 alias ns='nemo . > /dev/null 2>&1 &'
 alias lgit="lazygit"
-alias btop="btop --utf-force"
-alias mcaselector="sh ~/Games/Minecraft/MCA\ Selector/mcaselector.sh"
+# alias mcaselector="sh ~/Games/Minecraft/MCA\ Selector/mcaselector.sh"
 alias rr='ranger'
 
 # all the configs related aliases
-alias kittyconf="nvim ~/.dotfiles/kitty/kitty.conf"
-alias aliasconf="nvim ~/.dotfiles/zsh/aliases.zsh"
+alias kittyconf="nvim ~/.dotfiles/dots/kitty/kitty.conf"
+alias aliasconf="nvim ~/.dotfiles/dots/zsh/aliases.zsh"
+alias homeconf="nvim ~/.config/home-manager/home.nix"
+alias nixconf="sudo nvim /etc/nixos/configuration.nix"
 alias zshconf="nvim ~/.zshrc"
 alias so="source ~/.zshrc"
-alias dots="cd ~/.dotfiles/"
+alias dots="cd ~/.dotfiles/dots"
 alias conf="cd ~/.config/"
