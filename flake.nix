@@ -1,0 +1,1 @@
+/home/quun/.config/home-manager/flake.nix
