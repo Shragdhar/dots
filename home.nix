@@ -81,6 +81,7 @@
     inputs.csharplsp.packages.${systems}.default # Csharp LSP
     nixd
     nil
+    lua-language-server
 
     # Terminals
     kitty
