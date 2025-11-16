@@ -6,6 +6,14 @@
   ...
 }:
 
+let
+pkgs-stable = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-25.05.tar.gz";
+    sha256 = "0bz1qwd1fw9v4hmxi6h2qfgvxpv4kwdiz7xd9p7j1msr0b8d54h3";
+}) {
+    system = pkgs.system;
+};
+in
 {
   home.username = "quun";
   home.homeDirectory = "/home/quun";
@@ -40,7 +48,6 @@
   # };
 
   nixpkgs.config.allowUnfree = true;
-
   home.packages = with pkgs; [
     (writeShellScriptBin "nvidia-offload" ''
       	export __NV_PRIME_RENDER_OFFLOAD=1
@@ -63,7 +70,7 @@
     freerdp
     godot-mono
     godot
-    rustdesk-flutter
+    anytype
     #AI
     # games
     prismlauncher
@@ -71,12 +78,10 @@
     # Flake packages
     inputs.zen.packages.${systems}.default # Zen Browser
     # inputs.stable.legacyPackages.${systems}.jetbrains.idea-community-bin # IntelliJ IDEA
-    jetbrains.idea-community-bin
 
     # Editors
     neovim
     zed-editor
-    vscode
     #LSP
     inputs.csharplsp.packages.${systems}.default # Csharp LSP
     nixd
@@ -89,6 +94,7 @@
 
     # CLI tools
     git
+    lazygit
     jujutsu
     ranger
     rclone
@@ -146,5 +152,9 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
 }

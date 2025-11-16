@@ -188,3 +188,4 @@ cdbin() {
 export PATH="/usr/sbin:/sbin:$PATH"
 export DOTNET_ROOT="/nix/store/gydpsi918ix7zfa8x6mfh06n4z64qw63-dotnet-sdk-9.0.306/share/dotnet/"
 eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh)"
